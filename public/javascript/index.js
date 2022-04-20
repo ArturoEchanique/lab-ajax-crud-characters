@@ -1,28 +1,20 @@
 const charactersAPI = new APIHandler('./APIHandler');
-// console.log()
-// console.log("HOLIIIII")
-// charactersAPI.getFullList()
-
 window.addEventListener('load', () => {
   document.getElementById('fetch-all').addEventListener('click', function (event) {
     charactersAPI.getFullList()
       .then(({ data }) => {
         console.log(data)
 
-        let innerText = "HOLIIII"
-        // let htmlText = `<div class="character-info">
-        //   <div class="name">Character Name</div>
-        //   <div class="occupation">Character Occupation</div>
-        //   <div class="cartoon">Is a Cartoon?</div>
-        //   <div class="weapon">Character Weapon</div>
-        // </div>`
+        let innerText = ""
+
         data.forEach(character => {
 
           innerText += `<div class="character-info">
-          <div class="name">${character.name}</div>
-          <div class="occupation">${character.occupation}</div>
-          <div class="cartoon">${character.cartoon}</div>
-          <div class="weapon">${character.weapon}</div>
+          <div class="name">Id: ${character.id}</div>
+          <div class="name">Name: ${character.name}</div>
+          <div class="occupation">Occupation: ${character.occupation}</div>
+          <div class="cartoon">Is a cartoon: ${character.cartoon}</div>
+          <div class="weapon">Weapon: ${character.weapon}</div>
         </div>`
         })
         document.querySelector('.characters-container').innerHTML = innerText
@@ -38,7 +30,6 @@ window.addEventListener('load', () => {
     let innerText = "HOLIIII"
     charactersAPI.getOneRegister(id)
       .then(({ data }) => {
-        // console.log(data)
         innerText = `<div class="character-info">
           <div class="name">${data.name}</div>
           <div class="occupation">${data.occupation}</div>
@@ -63,7 +54,6 @@ window.addEventListener('load', () => {
 
         console.log("BORRADO!")
         document.querySelector('#delete-one').style.backgroundColor = "green"
-        // document.querySelector('.characters-container').innerHTML = innerText
       })
       .catch(err => {
         console.log(err)
@@ -94,7 +84,7 @@ window.addEventListener('load', () => {
 
         console.log("EDITADO!")
         document.querySelector('#send-edit-data').style.backgroundColor = "green"
-        // document.querySelector('.characters-container').innerHTML = innerText
+
       })
       .catch(err => {
         console.log(err)
@@ -108,8 +98,6 @@ window.addEventListener('load', () => {
 
 
     event.preventDefault()
-    // let id = document.querySelector('input[name="character-id-delete"]').value
-    // console.log(id)
 
     const inputs = document.querySelectorAll('#new-character-form input')
     const characterData = {
@@ -127,7 +115,6 @@ window.addEventListener('load', () => {
 
         console.log("CREADO!")
         document.querySelector('#send-data').style.backgroundColor = "green"
-        // document.querySelector('.characters-container').innerHTML = innerText
       })
       .catch(err => {
         console.log(err)
